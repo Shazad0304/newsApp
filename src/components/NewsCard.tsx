@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, Text, View, Image } from 'native-base';
-import { TouchableOpacity, ImageSourcePropType, StyleSheet } from 'react-native';
+import { TouchableOpacity, ImageSourcePropType, StyleSheet, I18nManager } from 'react-native';
 import { WebView, WebViewNavigation } from 'react-native-webview';
 import { formatDate } from '../utils';
 
@@ -41,7 +41,7 @@ const NewsCard: React.FC<NewsCardProps> = ({
         <View style={styles.titleContainer}>
         <View style={styles.authorContainer}>
               <Text style={styles.author}>{author}</Text>
-              <Text style={styles.publishedAt}>{formatDate(publishedAt)}</Text>
+              <Text style={styles.publishedAt}>{formatDate(publishedAt, I18nManager.isRTL ? "ar-eg" : "en-US")}</Text>
             </View>
             <Text style={styles.title}>{title}</Text>
           </View>
