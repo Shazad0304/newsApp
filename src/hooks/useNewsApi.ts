@@ -1,4 +1,6 @@
 import {useState, useEffect} from 'react';
+import { I18nManager } from 'react-native';
+import {DateTime} from "luxon";
 import {News} from '../types/News';
 
 const useNewsApi = (query: string) => {
@@ -9,10 +11,12 @@ const useNewsApi = (query: string) => {
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
+      const from = DateTime.now().minus({days: 7}).toISODate();
+      const language = I18nManager.isRTL ? "ar" : "en";
 
       try {
         const API_KEY = '8d65b8ac69a14bad88f243500970d417';
-        const url = `https://newsapi.org/v2/everything?q=${query}&apiKey=${API_KEY}`;
+        const url = `https://newsapi.org/v2/everything?q=${query}&from=${from}&sortBy=publishedAt&language=${language}&apiKey=${API_KEY}`;
 
         const response = await fetch(url);
 

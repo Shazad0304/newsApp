@@ -1,6 +1,7 @@
 import React from 'react';
 import { TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
-import { Box, Text } from 'native-base';
+import { Box } from 'native-base';
+import LocalizedText from './LocalizedTest';
 
 interface TopicChipProps {
   topic: string;
@@ -18,7 +19,7 @@ const TopicChip: React.FC<TopicChipProps> = ({ topic, selected, onPress }) => {
   return (
     <TouchableOpacity onPress={onPress} style={[styles.topicButton, { backgroundColor }]}>
       <Box style={styles.topicBox}>
-        <Text style={[styles.topicText, { color: textColor }]}>{topic}</Text>
+        <LocalizedText style={[styles.topicText, { color: textColor }]}>{t => t(topic)}</LocalizedText>
       </Box>
     </TouchableOpacity>
   );

@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
+  I18nManager
 } from 'react-native';
 import {Spinner, View, Text, FlatList} from 'native-base';
 import NewsCard from '../components/NewsCard';
@@ -9,7 +10,9 @@ import TopicChip from '../components/TopicChip';
 import ToggleTheme from '../components/ToggleTheme';
 import useNewsApi from '../hooks/useNewsApi';
 import { News } from '../types/News';
+import ToggleLanguage from '../components/ToggleLanguage';
 
+I18nManager.allowRTL(true);
 
 const NewsScreen: React.FC = () => {
   const topics = ['apple', 'meta', 'netflix', 'google', 'twitter', 'tesla'];
@@ -35,6 +38,7 @@ const NewsScreen: React.FC = () => {
     <SafeAreaView style={styles.container}>
       <View style={styles.headerContainer}>
         <ToggleTheme />
+        <ToggleLanguage />
       </View>
       <View style={styles.topicsContainer}>
         {topics.map(topic => (
@@ -72,7 +76,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-around',
     marginBottom: 10,
     paddingTop: 10,
   },

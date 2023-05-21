@@ -1,11 +1,12 @@
 import React from 'react';
 import { HStack, Text, Switch, useColorMode } from 'native-base';
+import LocalizedText from './LocalizedTest';
 
 const ToggleTheme = () => {
     const { colorMode, toggleColorMode } = useColorMode();
     return (
       <HStack space={2} alignItems="center">
-        <Text>Dark</Text>
+        <LocalizedText>{t => t("dark")}</LocalizedText>
         <Switch
           isChecked={colorMode === 'light'}
           onToggle={toggleColorMode}
@@ -13,7 +14,7 @@ const ToggleTheme = () => {
             colorMode === 'light' ? 'switch to dark mode' : 'switch to light mode'
           }
         />
-        <Text>Light</Text>
+        <LocalizedText>{t => t("light")}</LocalizedText>
       </HStack>
     );
   }
