@@ -18,7 +18,7 @@ const ToggleLanguage = () => {
           const newLang = language === 'en' ? 'ar' : 'en';
           setLanguage(newLang);
           I18nManager.forceRTL(newLang === 'ar');
-          RNRestart.restart();
+          //RNRestart.restart();
         }}
         aria-label={
           language === 'en' ? 'switch to arabic' : 'switch to english'
