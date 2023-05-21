@@ -13,7 +13,7 @@ import { News } from '../types/News';
 
 const NewsScreen: React.FC = () => {
   const topics = ['apple', 'meta', 'netflix', 'google', 'twitter', 'tesla'];
-  const [selectedTopic, setSelectedTopic] = useState('');
+  const [selectedTopic, setSelectedTopic] = useState(topics[0]);
   const {news, isLoading, error} = useNewsApi(selectedTopic);
 
   const handleTopicPress = (topic: string) => {
