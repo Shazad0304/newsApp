@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {I18nManager} from 'react-native';
+import {DevSettings, I18nManager} from 'react-native';
 import {HStack, Switch, Text} from 'native-base';
 import RNRestart from "react-native-restart"
 import LocalizedText from './LocalizedTest';
@@ -18,7 +18,13 @@ const ToggleLanguage = () => {
           const newLang = language === 'en' ? 'ar' : 'en';
           setLanguage(newLang);
           I18nManager.forceRTL(newLang === 'ar');
-          //RNRestart.restart();
+          if(__DEV__){
+            DevSettings.reload();
+          }
+          else{
+            //RN Restart works on production only
+            RNRestart.restart();
+          }
         }}
         aria-label={
           language === 'en' ? 'switch to arabic' : 'switch to english'
