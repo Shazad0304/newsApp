@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, Text, View, Image } from 'native-base';
 import { TouchableOpacity, ImageSourcePropType, StyleSheet, I18nManager } from 'react-native';
-import { WebView, WebViewNavigation } from 'react-native-webview';
+import { WebView, WebViewNavigation} from 'react-native-webview';
 import { formatDate } from '../utils';
 
 
@@ -13,6 +13,13 @@ interface NewsCardProps {
   author: string;
   publishedAt: string;
 }
+
+const handleWebViewError = (event : any) => {
+  const { nativeEvent } = event;
+  if (nativeEvent.loadingError) {
+    console.error('WebView loading error:', nativeEvent.loadingError);
+  }
+};
 
 const NewsCard: React.FC<NewsCardProps> = ({
   title,
@@ -51,6 +58,7 @@ const NewsCard: React.FC<NewsCardProps> = ({
     {isWebViewVisible && (
       <WebView
         source={{ uri: newsUrl }}
+        onError={handleWebViewError}
         style={styles.webview}
         onNavigationStateChange={(navState: WebViewNavigation) => {
           // Close the WebView when the user navigates away from the article
