@@ -19,6 +19,7 @@ const NewsScreen: React.FC = () => {
   const [selectedTopic, setSelectedTopic] = useState(topics[0]);
   const {news, isLoading, error} = useNewsApi(selectedTopic);
 
+
   const handleTopicPress = (topic: string) => {
     setSelectedTopic(topic);
   };
@@ -38,7 +39,7 @@ const NewsScreen: React.FC = () => {
     <SafeAreaView style={styles.container}>
       <View style={styles.headerContainer}>
         <ToggleTheme />
-        <ToggleLanguage />
+        <ToggleLanguage/>
       </View>
       <View style={styles.topicsContainer}>
         {topics.map(topic => (

@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, Text, View, Image } from 'native-base';
-import { TouchableOpacity, ImageSourcePropType, StyleSheet, I18nManager } from 'react-native';
-import { WebView, WebViewNavigation} from 'react-native-webview';
+import { TouchableOpacity, ImageSourcePropType, StyleSheet, I18nManager, Platform, Linking } from 'react-native';
 import { formatDate } from '../utils';
 
 
@@ -14,12 +13,6 @@ interface NewsCardProps {
   publishedAt: string;
 }
 
-const handleWebViewError = (event : any) => {
-  const { nativeEvent } = event;
-  if (nativeEvent.loadingError) {
-    console.error('WebView loading error:', nativeEvent.loadingError);
-  }
-};
 
 const NewsCard: React.FC<NewsCardProps> = ({
   title,
@@ -29,22 +22,24 @@ const NewsCard: React.FC<NewsCardProps> = ({
   author,
   publishedAt,
 }) => {
-  
-    const [isWebViewVisible, setIsWebViewVisible] = React.useState(false);
 
-    const handleCardPress = () => {
-      setIsWebViewVisible(true);
-    };
+    const [img,setImg] = useState(imageSource);
   
-    const handleWebViewClose = () => {
-      setIsWebViewVisible(false);
+    const handleCardPress = () => {
+      Linking.openURL(newsUrl);
     };
+
+    const handleImageLoadError = () => {
+      //set default image
+      setImg(require('../assets/images/ArticleDefault.jpg'))
+    }
+
 
   return (
     <View style={styles.container}>
     <TouchableOpacity onPress={handleCardPress}>
       <Card>
-        <Image source={imageSource} style={styles.image} alt='Article Image' />
+        <Image source={img} style={styles.image} onError={handleImageLoadError} alt='Article Image' />
         <View style={styles.titleContainer}>
         <View style={styles.authorContainer}>
               <Text style={styles.author}>{author}</Text>
@@ -55,19 +50,6 @@ const NewsCard: React.FC<NewsCardProps> = ({
         <Text style={styles.description}>{description}</Text>
       </Card>
     </TouchableOpacity>
-    {isWebViewVisible && (
-      <WebView
-        source={{ uri: newsUrl }}
-        onError={handleWebViewError}
-        style={styles.webview}
-        onNavigationStateChange={(navState: WebViewNavigation) => {
-          // Close the WebView when the user navigates away from the article
-          if (!navState.loading) {
-            handleWebViewClose();
-          }
-        }}
-      />
-    )}
   </View>
   );
 };
