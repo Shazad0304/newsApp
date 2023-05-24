@@ -1,7 +1,7 @@
 import React from 'react';
 import { TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
 import { Box } from 'native-base';
-import LocalizedText from './LocalizedTest';
+import LocalizedText from './LocalizedText';
 
 interface TopicChipProps {
   topic: string;

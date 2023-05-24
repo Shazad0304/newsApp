@@ -8,5 +8,6 @@
     "netflix": "Netflix",
     "google": "Google",
     "twitter": "Twitter",
-    "tesla": "Tesla"
+    "tesla": "Tesla",
+    "NOT_FOUND": "No news found"
 }

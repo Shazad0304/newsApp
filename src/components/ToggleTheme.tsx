@@ -1,6 +1,6 @@
 import React from 'react';
 import { HStack, Text, Switch, useColorMode } from 'native-base';
-import LocalizedText from './LocalizedTest';
+import LocalizedText from './LocalizedText';
 
 const ToggleTheme = () => {
     const { colorMode, toggleColorMode } = useColorMode();

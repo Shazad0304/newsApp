@@ -11,6 +11,7 @@ import ToggleTheme from '../components/ToggleTheme';
 import useNewsApi from '../hooks/useNewsApi';
 import { News } from '../types/News';
 import ToggleLanguage from '../components/ToggleLanguage';
+import LocalizedText from '../components/LocalizedText';
 
 I18nManager.allowRTL(true);
 
@@ -56,10 +57,10 @@ const NewsScreen: React.FC = () => {
         <Spinner/>
       ) : (
         <FlatList
-          data={news}
+          data={[]}
           renderItem={renderNewsItem}
           keyExtractor={(item, index) => index.toString()}
-          ListEmptyComponent={<Text style={styles.notFound}>No news found</Text>}
+          ListEmptyComponent={<LocalizedText style={styles.notFound}>{t => t("NOT_FOUND")}</LocalizedText>}
         />
       )}
     </SafeAreaView>

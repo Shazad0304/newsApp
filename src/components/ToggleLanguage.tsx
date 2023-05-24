@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {I18nManager} from 'react-native';
 import {HStack, Switch, Text} from 'native-base';
-import LocalizedText from './LocalizedTest';
+import LocalizedText from './LocalizedText';
 import {useSelector,useDispatch} from 'react-redux';
 import { changeLanguage } from '../store/actions/lang';
 

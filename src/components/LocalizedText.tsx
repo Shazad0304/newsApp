@@ -1,4 +1,3 @@
-//@ts-nocheck
 import {Text} from 'native-base';
 import React from 'react';
 import {StyleProp, TextStyle} from 'react-native';
