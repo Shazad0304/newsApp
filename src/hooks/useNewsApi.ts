@@ -2,6 +2,7 @@ import {useState, useEffect} from 'react';
 import {DateTime} from "luxon";
 import {News} from '../types/News';
 import {useSelector} from 'react-redux';
+import { config } from '../config';
 
 
 const useNewsApi = (query: string) => {
@@ -15,8 +16,8 @@ const useNewsApi = (query: string) => {
       setIsLoading(true);
       const from = DateTime.now().minus({days: 7}).toISODate();
       try {
-        const API_KEY = '8d65b8ac69a14bad88f243500970d417';
-        const url = `https://newsapi.org/v2/everything?q=${query}&from=${from}&sortBy=publishedAt&language=${locale}&apiKey=${API_KEY}`;
+        const API_KEY = config.newsApiKey;
+        const url = `${config.newsApiUrl}?q=${query}&from=${from}&sortBy=publishedAt&language=${locale}&apiKey=${API_KEY}`;
 
         const response = await fetch(url);
 
